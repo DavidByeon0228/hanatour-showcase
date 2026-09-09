@@ -224,12 +224,12 @@
   z-index: 3;
   text-shadow: 0 2px 18px rgba(0,0,0,.55);
 }
-.cover-slide .brandbar {
+.tpl-ibk .cover-slide .brandbar {
   position: absolute;
   top: 0;
   left: 84px;
 }
-.cover-slide .deck-footer {
+.tpl-ibk .cover-slide .deck-footer {
   position: absolute;
   left: 84px;
   right: 84px;
@@ -324,12 +324,12 @@
   50% { opacity: 1; letter-spacing: .25em; }
 }
 @media (max-width: 560px) {
-  .cover-slide .brandbar {
+  .tpl-ibk .cover-slide .brandbar {
     position: relative;
     top: auto;
     left: auto;
   }
-  .cover-slide .deck-footer {
+  .tpl-ibk .cover-slide .deck-footer {
     position: static;
     left: auto;
     right: auto;
