@@ -20,7 +20,10 @@
   box-shadow: 0 14px 40px rgba(0,0,0,.45);
   backdrop-filter: blur(18px) saturate(160%);
   transition: opacity .35s var(--ease, ease), transform .35s var(--ease, ease);
-  max-width: calc(100vw - 20px);
+  width: min(560px, calc(100vw - 12px));
+  max-width: calc(100vw - 12px);
+  box-sizing: border-box;
+  overflow: hidden;
 }
 .mbar.idle { opacity: .22; }
 .mbar.idle:hover { opacity: 1; }
@@ -54,7 +57,9 @@
 /* 좁은 화면: 라벨 숨기고 아이콘만 */
 @media (max-width: 420px) {
   .mbar button span { display: none; }
-  .mbar button { min-width: 42px; padding: 5px 6px; }
+  .mbar { gap: 1px; padding: 4px; }
+  .mbar button { flex: 1 1 0; min-width: 0; padding: 5px 2px; }
+  .mbar-page { flex: 1.25 1 0; }
 }
 
 /* ---------- 슬라이드 점프 시트 ---------- */
@@ -114,7 +119,16 @@
 
 /* ---------- 슬라이드 내용 모바일 보정 ---------- */
 @media (max-width: 900px) {
-  .tpl-ibk .slide { padding: 40px 30px 96px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+  .tpl-ibk .slide {
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: max(28px, env(safe-area-inset-top)) 30px calc(112px + env(safe-area-inset-bottom));
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    scrollbar-width: thin;
+  }
   .tpl-ibk .deck-footer { position: static; margin-top: 22px; padding-bottom: 8px; }
   .brandbar { position: static; margin-bottom: 14px; }
   .section-num { font-size: 120px; right: 16px; bottom: 76px; opacity: .04; }
@@ -163,7 +177,9 @@
   .people { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 560px) {
-  .tpl-ibk .slide { padding: 30px 20px 92px; }
+  .tpl-ibk .slide {
+    padding: max(24px, env(safe-area-inset-top)) 20px calc(112px + env(safe-area-inset-bottom));
+  }
   .tiles.g4, .grid.g3, .grid.g4, .grid.g5, .grid.g6 { grid-template-columns: 1fr; }
   .days { grid-template-columns: 1fr; }
   .people { grid-template-columns: 1fr; }

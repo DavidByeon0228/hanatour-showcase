@@ -223,6 +223,7 @@
       slides.forEach((s,i) => {
         s.classList.toggle('is-active', i===n);
         s.classList.toggle('is-prev', i<n);
+        if (i === n) s.scrollTop = 0;
       });
       idx = n;
       barFill.style.width = ((n+1)/total*100)+'%';
