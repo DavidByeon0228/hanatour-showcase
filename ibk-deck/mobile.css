@@ -233,6 +233,9 @@
   background: rgba(3, 14, 36, .46);
   text-shadow: 0 0 22px rgba(141,234,255,.42), 0 3px 18px rgba(0,0,0,.7);
   letter-spacing: .08em;
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+  background-image: none;
 }
 .heritage-tea .ibk-bg::after {
   content: "";
