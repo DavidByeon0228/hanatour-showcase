@@ -224,7 +224,43 @@
 }
 .thank-you .thank-you-quote span { color: #fff; }
 .thank-you .chip { border-color: rgba(141,234,255,.45); color: #fff; background: rgba(5,20,48,.62); }
-.heritage-tea .card { background: color-mix(in srgb, var(--surface) 94%, #06152d); }
+.thank-you h2.h1 {
+  margin-top: 22px;
+  margin-bottom: 28px;
+  padding: 14px 24px 18px;
+  border-top: 1px solid rgba(141,234,255,.55);
+  border-bottom: 1px solid rgba(141,234,255,.55);
+  background: rgba(3, 14, 36, .46);
+  text-shadow: 0 0 22px rgba(141,234,255,.42), 0 3px 18px rgba(0,0,0,.7);
+  letter-spacing: .08em;
+}
+.heritage-tea .ibk-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(4, 12, 30, .88), rgba(7, 24, 52, .78));
+  pointer-events: none;
+}
+.heritage-tea > .eyebrow,
+.heritage-tea > .h2,
+.heritage-tea > .lede,
+.heritage-tea > .card,
+.heritage-tea > .sm,
+.heritage-tea > .deck-footer {
+  position: relative;
+  z-index: 3;
+}
+.heritage-tea .h2 { color: #f7fbff; text-shadow: 0 2px 14px rgba(0,0,0,.7); }
+.heritage-tea .gradient-text {
+  background: linear-gradient(100deg, #9ff3ff, #ffffff 52%, #ffd98a);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.heritage-tea .card {
+  background: rgba(7, 18, 42, .94);
+  border-color: rgba(159,243,255,.35);
+  box-shadow: 0 14px 36px rgba(0,0,0,.28);
+}
 .security-amp { color: var(--text-1); }
 .li-detail { display: inline; }
 @keyframes thankYouPulse {
