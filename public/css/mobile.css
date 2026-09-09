@@ -54,7 +54,7 @@ body { padding-bottom: env(safe-area-inset-bottom); }
   .toast { max-width: none; }
 
   /* Booking and credits tables become readable cards instead of clipped grids. */
-  .card-flush:has(> .dtable) { overflow: visible; }
+  .card-flush { overflow: visible; }
   .dtable, .dtable thead, .dtable tbody, .dtable tr, .dtable th, .dtable td {
     display: block; width: 100%;
   }
