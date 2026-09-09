@@ -1,0 +1,53 @@
+@page {
+  size: 16in 9in;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    width: 16in;
+    height: auto;
+    margin: 0;
+    background: #071326;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .deck {
+    width: 16in;
+    height: auto;
+    overflow: visible;
+  }
+
+  .slide {
+    position: relative !important;
+    inset: auto !important;
+    width: 16in;
+    height: 9in;
+    min-height: 9in;
+    page-break-after: always;
+    break-after: page;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    pointer-events: auto;
+    overflow: hidden;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .slide:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  .mbar,
+  .msheet,
+  .mtoast,
+  .overview,
+  .notes-overlay,
+  .progress-bar {
+    display: none !important;
+  }
+}
