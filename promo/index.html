@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko" data-theme="aurora" data-mode="dark" data-density="cozy" data-motion="on">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>2026년 하반기 한빛생명 GA 해외여행 프로모션</title>
+<meta name="description" content="2026년 하반기 한빛생명 GA 해외여행 프로모션 — 한빛생명 임직원 대상 해외여행 프로모션 신청 사이트 (데모)">
+<meta name="color-scheme" content="dark light">
+<meta property="og:title" content="2026년 하반기 한빛생명 GA 해외여행 프로모션">
+<meta property="og:description" content="가상의 행사 데이터로 구성한 해외여행 프로모션 신청 사이트 데모">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='11' fill='%236d8bff'/%3E%3Cpath d='M9 26.5c4.6-2 8.2-5.6 10.4-10.6C21.6 20.9 25.2 24.5 31 26.5' fill='none' stroke='%23fff' stroke-width='2.6' stroke-linecap='round'/%3E%3Ccircle cx='28.5' cy='12' r='3.4' fill='%23fff'/%3E%3C/svg%3E">
+<script>
+/* FOUC 방지 + URL 로 디자인 강제 (?theme=swiss&mode=light) */
+(function(){try{
+  var d=JSON.parse(localStorage.getItem('hb-promo-design')||'{}');
+  var defs={aurora:'dark',editorial:'light',sunset:'light',swiss:'light',midnight:'dark'};
+  var q=new URLSearchParams(location.search);
+  ['theme','mode','density','motion'].forEach(function(k){ if(q.get(k)) d[k]=q.get(k); });
+  if(q.get('theme')&&!q.get('mode')) d.mode=null;
+  var t=defs[d.theme]?d.theme:'aurora';
+  var r=document.documentElement;
+  r.setAttribute('data-theme',t);
+  r.setAttribute('data-mode',(d.mode==='dark'||d.mode==='light')?d.mode:defs[t]);
+  r.setAttribute('data-density',d.density==='compact'?'compact':'cozy');
+  r.setAttribute('data-motion',d.motion==='off'?'off':'on');
+}catch(e){}})();
+</script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Cormorant+Garamond:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Nanum+Myeongjo:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/themes.css">
+<link rel="stylesheet" href="css/mobile.css">
+<noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
+</head>
+<body>
+<div id="app"></div>
+<div class="toast-host"></div>
+<noscript><div class="wrap section"><h1 class="h-md">JavaScript가 필요합니다</h1>
+<p class="muted mt-2">이 데모는 브라우저에서 직접 동작하는 정적 사이트입니다. JavaScript를 켜고 다시 열어 주세요.</p></div></noscript>
+<script src="js/data.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/app.js"></script>
+<script src="js/bundle.js"></script>
+</body></html>

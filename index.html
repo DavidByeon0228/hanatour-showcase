@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="하나투어 인터랙티브 쇼케이스 — 한빛생명 프로모션과 IBK기업은행 제안서">
+  <meta name="theme-color" content="#0b1020">
+  <title>HANATOUR · Interactive Showcase</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080b16;
+      --panel: rgba(19, 27, 51, .78);
+      --line: rgba(255,255,255,.13);
+      --text: #f6f8ff;
+      --muted: #a6b0c9;
+      --cyan: #66e3ff;
+      --violet: #a78bfa;
+      --coral: #ff9d7a;
+    }
+    * { box-sizing: border-box; }
+    html { min-height: 100%; }
+    body {
+      margin: 0; min-height: 100vh; overflow-x: hidden;
+      color: var(--text);
+      background:
+        radial-gradient(70rem 40rem at 10% -10%, rgba(50, 89, 220, .45), transparent 65%),
+        radial-gradient(55rem 35rem at 100% 15%, rgba(183, 86, 255, .28), transparent 68%),
+        var(--bg);
+      font: 16px/1.6 Inter, Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .22;
+      background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, #000, transparent 78%);
+    }
+    main { width: min(1120px, calc(100% - 40px)); margin: 0 auto; padding: 72px 0 56px; position: relative; }
+    .eyebrow { color: var(--cyan); font-size: .74rem; font-weight: 800; letter-spacing: .24em; text-transform: uppercase; }
+    h1 { max-width: 760px; margin: 16px 0 18px; font-size: clamp(2.7rem, 7vw, 6.3rem); line-height: .98; letter-spacing: -.065em; }
+    h1 span { background: linear-gradient(100deg, var(--cyan), var(--violet) 55%, var(--coral)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .intro { max-width: 670px; margin: 0; color: var(--muted); font-size: clamp(1rem, 2vw, 1.2rem); }
+    .meta { display: flex; flex-wrap: wrap; gap: 9px; margin: 26px 0 54px; }
+    .meta span { padding: 7px 12px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: .78rem; background: rgba(255,255,255,.04); }
+    .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .project {
+      position: relative; display: flex; min-height: 390px; flex-direction: column; justify-content: flex-end;
+      overflow: hidden; padding: 30px; border: 1px solid var(--line); border-radius: 28px;
+      background: var(--panel); box-shadow: 0 24px 80px rgba(0,0,0,.24); isolation: isolate;
+      transition: transform .25s ease, border-color .25s ease;
+    }
+    .project::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .76; }
+    .project.promo::before { background: radial-gradient(circle at 25% 20%, rgba(55, 219, 188, .62), transparent 48%), linear-gradient(145deg, #173e56, #12172b 70%); }
+    .project.ibk::before { background: radial-gradient(circle at 82% 18%, rgba(52, 151, 255, .7), transparent 42%), linear-gradient(145deg, #171c52, #171228 70%); }
+    .project:hover { transform: translateY(-6px); border-color: rgba(255,255,255,.35); }
+    .project .tag { align-self: flex-start; margin-bottom: auto; padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,.1); color: #dce7ff; font-size: .72rem; font-weight: 800; letter-spacing: .12em; }
+    .project h2 { margin: 0 0 10px; font-size: clamp(1.55rem, 3vw, 2.25rem); letter-spacing: -.04em; }
+    .project p { min-height: 54px; margin: 0 0 24px; color: #bac5dc; }
+    .project a { display: inline-flex; min-height: 50px; align-items: center; justify-content: center; padding: 0 18px; border-radius: 14px; background: #f4f7ff; color: #11182e; font-weight: 800; text-decoration: none; }
+    .project a:focus-visible, .project a:hover { outline: 3px solid rgba(102,227,255,.55); outline-offset: 3px; }
+    footer { margin-top: 30px; color: #74809d; font-size: .78rem; }
+    @media (max-width: 700px) {
+      main { width: min(100% - 28px, 540px); padding: 44px 0 34px; }
+      h1 { font-size: clamp(2.65rem, 14vw, 4.6rem); }
+      .meta { margin-bottom: 32px; }
+      .projects { grid-template-columns: 1fr; }
+      .project { min-height: 320px; padding: 24px; border-radius: 22px; }
+      .project p { min-height: 0; }
+      .project a { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">HANATOUR · INTERACTIVE SHOWCASE</div>
+    <h1>두 개의 제안,<br><span>하나의 경험.</span></h1>
+    <p class="intro">브라우저에서 바로 열어보는 하나투어의 인터랙티브 결과물입니다. 모바일에서도 손쉽게 탐색할 수 있도록 설계했습니다.</p>
+    <div class="meta" aria-label="쇼케이스 정보">
+      <span>2026 PROJECTS</span><span>RESPONSIVE WEB</span><span>PUBLIC DEMO</span>
+    </div>
+    <section class="projects" aria-label="프로젝트 목록">
+      <article class="project promo">
+        <span class="tag">PROMOTION WEBSITE</span>
+        <h2>한빛생명 GA<br>해외여행 프로모션</h2>
+        <p>로그인부터 업적 확인, 여행 신청과 예약 조회까지 이어지는 모바일 친화형 행사 사이트입니다.</p>
+        <a href="promo/">프로모션 사이트 열기 <span aria-hidden="true">&nbsp;→</span></a>
+      </article>
+      <article class="project ibk">
+        <span class="tag">INTERACTIVE PROPOSAL</span>
+        <h2>IBK기업은행<br>위탁 교육기관 제안서</h2>
+        <p>뉴욕과 런던 글로벌 금융연수 제안서입니다. 모바일 하단 컨트롤에서 목차, 테마, 전체화면, 발표자 모드를 이용하세요.</p>
+        <a href="ibk/">IBK 제안서 열기 <span aria-hidden="true">&nbsp;→</span></a>
+      </article>
+    </section>
+    <footer>© 2026 HANATOUR · Demo showcase</footer>
+  </main>
+</body>
+</html>

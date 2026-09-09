@@ -1,0 +1,81 @@
+/* ============================================================
+   모바일 최적화 레이어 — base.css / themes.css 다음에 로드
+   터치 타깃 확대 · iOS 확대 방지 · 안전영역 · 표 가로 스크롤
+   ============================================================ */
+
+/* iOS 안전영역 */
+body { padding-bottom: env(safe-area-inset-bottom); }
+
+/* 표는 항상 가로로 스크롤 (페이지 자체는 가로 스크롤 금지) */
+.card-flush { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.dtable { min-width: 640px; }
+
+@media (max-width: 900px) {
+  /* iOS 는 16px 미만 입력에 자동 확대가 걸립니다 */
+  .input, .select, .textarea { font-size: 16px; padding: 13px 14px; }
+
+  /* 터치 타깃 최소 44px */
+  .btn { min-height: 46px; padding-inline: calc(var(--u) * 2.6); }
+  .btn-sm { min-height: 40px; }
+  .btn-lg { min-height: 52px; }
+  .nav a { min-height: 46px; display: flex; align-items: center; }
+  .check { padding: 6px 0; }
+  .check input { width: 22px; height: 22px; }
+  .acc summary { min-height: 54px; padding-block: calc(var(--u) * 1.8); }
+  .picker > span { min-height: 66px; justify-content: center; }
+  .badge { padding: 6px 13px; }
+
+  /* 히어로 · 섹션 여백 축소 */
+  .hero { min-height: 74svh; }
+  .hero-in { padding-block: calc(var(--u) * 7); }
+  .hero-meta { gap: calc(var(--u) * 2); }
+  .hero-meta div { flex: 1 1 40%; }
+  .hero-cta .btn { flex: 1 1 100%; }
+  .section { padding-block: calc(var(--u) * 6); }
+  .page-hero { padding-block: calc(var(--u) * 5) calc(var(--u) * 4); }
+  .card { padding: calc(var(--u) * 2.6); }
+
+  /* 2단 그리드는 모두 1단으로 (inline style 로 지정된 것 포함) */
+  .grid[style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+  .field-row { grid-template-columns: 1fr; }
+  .pickers { grid-template-columns: 1fr; }
+
+  /* 여행지 상세: 사진 + 본문 2단 → 1단 */
+  article .grid { grid-template-columns: 1fr !important; }
+  article .grid > div:first-child { min-height: 210px !important; }
+
+  /* 예약 요약 사이드바를 본문 아래로 */
+  aside.stack { margin-top: calc(var(--u) * 3); }
+
+  /* 디자인 전환 FAB 는 안전영역 위로 */
+  .tsw-fab { bottom: calc(16px + env(safe-area-inset-bottom)); }
+  .tsw-panel { bottom: calc(76px + env(safe-area-inset-bottom)); max-height: 70svh; }
+  .toast-host { left: 12px; right: 12px; top: auto; bottom: calc(84px + env(safe-area-inset-bottom)); }
+  .toast { max-width: none; }
+}
+
+@media (max-width: 560px) {
+  .hero-title, .h-xl { font-size: clamp(1.9rem, 8.4vw, 2.6rem); }
+  .h-lg { font-size: clamp(1.5rem, 6.6vw, 2rem); }
+  .stat b { font-size: var(--fs-24); }
+  .price b { font-size: var(--fs-20); }
+  .row, .row-between { gap: calc(var(--u) * 1.2); }
+  .kv { grid-template-columns: 1fr; }
+  .pcard-name b { font-size: var(--fs-18); }
+  .brand-txt small { display: none; }
+}
+
+/* 가로 모드 낮은 높이 */
+@media (max-height: 480px) and (orientation: landscape) {
+  .hero { min-height: 100svh; }
+  .hero-in { padding-block: calc(var(--u) * 4); }
+}
+
+/* 터치 기기에서는 hover 리프트를 끕니다 (탭 시 잔상 방지) */
+@media (hover: none) {
+  .card-link:hover { transform: none; }
+  .btn:hover { transform: none; }
+  .chip:hover { transform: none; }
+  .card-link:active { transform: scale(.99); }
+  .btn:active { transform: scale(.98); }
+}

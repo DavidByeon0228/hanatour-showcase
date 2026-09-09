@@ -1,0 +1,279 @@
+/* ============================================================
+   IBK × 하나투어 제안 덱 — scoped styles (.tpl-ibk)
+   base.css 토큰 위에 얹는 프레젠테이션 전용 레이어
+   ============================================================ */
+
+.tpl-ibk {
+  --ibk-blue: #0a5ed7;
+  --ibk-cyan: #35d6ff;
+  --ibk-gold: #f7c94b;
+  --ibk-rose: #ff5c8a;
+  --ny: #ff7a45;
+  --ldn: #4b8bff;
+  --font-display: 'Inter', 'Noto Sans KR', system-ui, sans-serif;
+}
+
+/* ---------- 슬라이드 전환: 기본 슬라이드보다 더 극적으로 ---------- */
+.tpl-ibk .slide {
+  padding: 60px 84px;
+  transition: opacity .55s var(--ease), transform .55s var(--ease), filter .55s var(--ease);
+  transform: translateX(48px) scale(.985);
+  filter: blur(6px);
+}
+.tpl-ibk .slide.is-active { transform: none; filter: none; }
+.tpl-ibk .slide.is-prev { transform: translateX(-48px) scale(.985); filter: blur(6px); }
+
+/* ---------- 배경 레이어 ---------- */
+.ibk-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.ibk-bg > * { position: absolute; }
+/* FX 캔버스는 대부분 저알파 검정으로 잔상을 그리므로, screen 합성으로
+   검정을 투명하게 만들어 사진 배경을 덮지 않고 빛만 얹히도록 합니다. */
+.ibk-fx { position: absolute; inset: 0; z-index: 1; pointer-events: none; mix-blend-mode: screen; }
+/* 콘텐츠를 배경 레이어 위로. flex 아이템은 static 이어도 z-index 가 적용되므로
+   position 은 건드리지 않습니다 (brandbar · deck-footer 의 absolute 유지). */
+.tpl-ibk .slide > *:not(.ibk-bg):not(.ibk-fx) { z-index: 2; }
+
+/* 떠다니는 글로우 오브 */
+.orb { border-radius: 50%; filter: blur(90px); opacity: .55; animation: orbDrift 18s ease-in-out infinite alternate; }
+.orb-a { width: 620px; height: 620px; left: -180px; top: -220px; background: var(--ibk-blue); }
+.orb-b { width: 520px; height: 520px; right: -160px; bottom: -200px; background: var(--ibk-cyan); animation-delay: -7s; }
+.orb-c { width: 420px; height: 420px; right: 22%; top: -160px; background: var(--ibk-rose); opacity: .32; animation-delay: -12s; }
+@keyframes orbDrift {
+  from { transform: translate3d(0,0,0) scale(1); }
+  to   { transform: translate3d(70px,50px,0) scale(1.18); }
+}
+
+/* 그리드 스캔 */
+.gridlines {
+  inset: 0;
+  background-image: linear-gradient(var(--border) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(80% 70% at 50% 40%, #000 20%, transparent 78%);
+  opacity: .5;
+}
+.scanline {
+  left: 0; right: 0; height: 2px; top: 0;
+  background: linear-gradient(90deg, transparent, var(--ibk-cyan), transparent);
+  opacity: .5; animation: scanMove 6s linear infinite;
+}
+@keyframes scanMove { 0% { top: 0; opacity: 0 } 12% { opacity: .6 } 88% { opacity: .6 } 100% { top: 100%; opacity: 0 } }
+
+/* 사진 배경 */
+.photo-bg { inset: 0; }
+.photo-bg img { width: 100%; height: 100%; object-fit: cover; }
+.photo-bg::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(100deg, var(--bg) 2%, color-mix(in srgb, var(--bg) 88%, transparent) 34%, color-mix(in srgb, var(--bg) 45%, transparent) 66%, color-mix(in srgb, var(--bg) 12%, transparent) 100%);
+}
+/* 중앙 정렬 슬라이드는 글이 가운데 오므로 스크림을 가운데에 두껍게,
+   가장자리로 갈수록 사진이 드러나도록 뒤집습니다. */
+.photo-bg.center::after {
+  background:
+    radial-gradient(58% 72% at 50% 50%, color-mix(in srgb, var(--bg) 88%, transparent), color-mix(in srgb, var(--bg) 62%, transparent) 62%, color-mix(in srgb, var(--bg) 30%, transparent) 100%),
+    linear-gradient(180deg, color-mix(in srgb, var(--bg) 40%, transparent), transparent 30%, color-mix(in srgb, var(--bg) 55%, transparent));
+}
+.photo-bg.kb img { animation: kbZoom 20s ease-out both; }
+@keyframes kbZoom { from { transform: scale(1.14) translate(2%, 1%) } to { transform: scale(1) } }
+
+/* ---------- 타이포 ---------- */
+.tpl-ibk h1, .tpl-ibk h2, .tpl-ibk h3, .tpl-ibk h4 { font-family: var(--font-display); letter-spacing: -.035em; line-height: 1.14; margin: 0; }
+.tpl-ibk .h1 { font-size: clamp(40px, 5.4vw, 82px); font-weight: 800; }
+.tpl-ibk .h2 { font-size: clamp(30px, 3.5vw, 52px); font-weight: 800; }
+.tpl-ibk .h3 { font-size: clamp(20px, 2vw, 30px); font-weight: 750; }
+.tpl-ibk .lede { font-size: clamp(15px, 1.25vw, 20px); color: var(--text-2); line-height: 1.75; max-width: 68ch; }
+.tpl-ibk p { margin: 0; }
+.tpl-ibk .dim { color: var(--text-2); }
+.tpl-ibk .dim2 { color: var(--text-3); }
+.tiny { font-size: 12px; letter-spacing: .04em; }
+.sm { font-size: 14px; line-height: 1.7; }
+
+.gradient-text {
+  background: linear-gradient(100deg, var(--ibk-cyan), var(--ibk-blue) 45%, var(--ibk-rose));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  background-size: 220% 100%; animation: gradSlide 7s ease-in-out infinite alternate;
+}
+@keyframes gradSlide { to { background-position: 100% 0 } }
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 12px; font-weight: 750; letter-spacing: .26em; text-transform: uppercase;
+  color: var(--ibk-cyan);
+}
+.eyebrow::before { content: ""; width: 30px; height: 2px; background: currentColor; }
+.eyebrow.ny { color: var(--ny) } .eyebrow.ldn { color: var(--ldn) }
+
+.section-num {
+  position: absolute; right: 60px; bottom: 32px; z-index: 1;
+  font-size: clamp(120px, 20vw, 300px); font-weight: 900; line-height: .8;
+  color: var(--text-1); opacity: .05; letter-spacing: -.06em; pointer-events: none;
+}
+
+/* ---------- 칩 / 배지 ---------- */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 6px 14px; border-radius: 999px;
+  border: 1px solid var(--border-strong); background: color-mix(in srgb, var(--surface) 70%, transparent);
+  font-size: 13px; font-weight: 650; color: var(--text-2);
+  backdrop-filter: blur(8px);
+  transition: transform .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease);
+}
+.chip:hover { transform: translateY(-3px); border-color: var(--ibk-cyan); color: var(--text-1); }
+.chip-hot { border-color: color-mix(in srgb, var(--ibk-cyan) 55%, transparent); color: var(--ibk-cyan); background: color-mix(in srgb, var(--ibk-cyan) 12%, transparent); }
+.chip-ny  { border-color: color-mix(in srgb, var(--ny) 55%, transparent); color: var(--ny); background: color-mix(in srgb, var(--ny) 12%, transparent); }
+.chip-ldn { border-color: color-mix(in srgb, var(--ldn) 55%, transparent); color: var(--ldn); background: color-mix(in srgb, var(--ldn) 12%, transparent); }
+
+/* ---------- 카드 ---------- */
+.tpl-ibk .card {
+  background: color-mix(in srgb, var(--surface) 76%, transparent);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 22px 24px; backdrop-filter: blur(14px);
+  transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease);
+  position: relative; overflow: hidden;
+}
+.tpl-ibk .card::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(140deg, color-mix(in srgb, var(--ibk-cyan) 14%, transparent), transparent 46%);
+  opacity: 0; transition: opacity .35s var(--ease);
+}
+.tpl-ibk .card:hover { transform: translateY(-6px); border-color: color-mix(in srgb, var(--ibk-cyan) 50%, transparent); box-shadow: var(--shadow-lg); }
+.tpl-ibk .card:hover::before { opacity: 1; }
+.tpl-ibk .card h4 { font-size: 17px; font-weight: 750; margin-bottom: 8px; }
+.tpl-ibk .card p { font-size: 13.5px; line-height: 1.68; color: var(--text-2); }
+.card-n { display: block; font-family: var(--font-mono); font-size: 12px; color: var(--ibk-cyan); letter-spacing: .16em; margin-bottom: 10px; }
+
+.grid { display: grid; gap: 18px; }
+.g2 { grid-template-columns: repeat(2, 1fr) } .g3 { grid-template-columns: repeat(3, 1fr) }
+.g4 { grid-template-columns: repeat(4, 1fr) } .g5 { grid-template-columns: repeat(5, 1fr) }
+.g6 { grid-template-columns: repeat(6, 1fr) }
+.row { display: flex; gap: 14px; align-items: center; flex-wrap: wrap }
+.between { display: flex; gap: 20px; align-items: flex-end; justify-content: space-between; flex-wrap: wrap }
+.mt-s { margin-top: 14px } .mt-m { margin-top: 22px } .mt-l { margin-top: 34px } .mt-xl { margin-top: 46px }
+
+/* ---------- 지표 ---------- */
+.metric { text-align: left }
+.metric .n {
+  font-size: clamp(34px, 4.2vw, 62px); font-weight: 850; line-height: 1;
+  letter-spacing: -.05em; font-variant-numeric: tabular-nums;
+  background: linear-gradient(120deg, var(--ibk-cyan), var(--ibk-blue));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.metric .u { font-size: .44em; font-weight: 700; -webkit-text-fill-color: var(--text-2); margin-left: 4px }
+.metric .l { font-size: 13px; color: var(--text-3); margin-top: 8px; letter-spacing: .02em }
+
+/* ---------- 두 도시 비교 ---------- */
+.vs { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; align-items: stretch }
+.vs-col { padding: 26px 28px; border-radius: var(--radius); border: 1px solid var(--border); position: relative; overflow: hidden }
+.vs-col.ldn { background: linear-gradient(160deg, color-mix(in srgb, var(--ldn) 16%, transparent), transparent 70%) }
+.vs-col.ny  { background: linear-gradient(200deg, color-mix(in srgb, var(--ny) 16%, transparent), transparent 70%) }
+.vs-mid { display: flex; flex-direction: column; justify-content: center; gap: 15px; padding: 0 22px; min-width: 132px }
+.vs-key {
+  text-align: center; font-size: 12px; font-weight: 700; letter-spacing: .12em;
+  color: var(--text-3); padding: 7px 0; border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 60%, transparent); border: 1px solid var(--border);
+}
+.vs-col h3 { font-size: 26px; letter-spacing: -.04em }
+.vs-col ul { list-style: none; padding: 0; margin: 16px 0 0 }
+.vs-col li { font-size: 14px; color: var(--text-2); padding: 7px 0; border-top: 1px solid var(--border) }
+.vs-col li:first-child { border-top: 0 }
+
+/* ---------- 타임라인 / 일정 ---------- */
+.days { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px }
+.day { border: 1px solid var(--border); border-radius: 14px; padding: 16px 14px; background: color-mix(in srgb, var(--surface) 66%, transparent); backdrop-filter: blur(10px); transition: transform .3s var(--ease), border-color .3s var(--ease) }
+.day:hover { transform: translateY(-6px); border-color: var(--ibk-cyan) }
+.day .d { font-family: var(--font-mono); font-size: 11px; letter-spacing: .18em; color: var(--ibk-cyan); font-weight: 700 }
+.day ul { list-style: none; padding: 0; margin: 12px 0 0 }
+.day li { font-size: 12.5px; line-height: 1.55; color: var(--text-2); padding: 6px 0; border-top: 1px dashed var(--border) }
+.day li:first-child { border-top: 0 }
+.day li b { color: var(--text-1); font-weight: 700; display: block; font-size: 13px }
+
+.tl { position: relative; padding-left: 30px }
+.tl::before { content: ""; position: absolute; left: 6px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(var(--ibk-cyan), var(--ibk-blue), transparent) }
+.tl li { position: relative; padding: 0 0 20px }
+.tl li::before { content: ""; position: absolute; left: -30px; top: 6px; width: 11px; height: 11px; border-radius: 50%; background: var(--ibk-cyan); box-shadow: 0 0 0 5px color-mix(in srgb, var(--ibk-cyan) 20%, transparent) }
+.tl b { display: block; font-size: 14px } .tl span { font-size: 13px; color: var(--text-2) }
+
+/* ---------- 표 ---------- */
+.tbl { width: 100%; border-collapse: collapse; font-size: 13.5px }
+.tbl th, .tbl td { padding: 11px 14px; text-align: left; border-bottom: 1px solid var(--border) }
+.tbl th { font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--text-3); font-weight: 750 }
+.tbl tbody tr { transition: background .25s var(--ease) }
+.tbl tbody tr:hover { background: color-mix(in srgb, var(--ibk-cyan) 8%, transparent) }
+.tbl .hi { color: var(--ibk-cyan); font-weight: 750 }
+.tbl .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums }
+
+/* ---------- 사람 카드 ---------- */
+.people { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px }
+.person { border: 1px solid var(--border); border-radius: 14px; padding: 16px; background: color-mix(in srgb, var(--surface) 66%, transparent); transition: transform .3s var(--ease), border-color .3s var(--ease) }
+.person:hover { transform: translateY(-5px); border-color: var(--ibk-gold) }
+.person .av { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 15px; color: #06101f; background: linear-gradient(135deg, var(--ibk-cyan), var(--ibk-blue)); margin-bottom: 11px }
+.person b { font-size: 14.5px; display: block } .person small { font-size: 11.5px; color: var(--text-3); display: block; margin-top: 3px }
+.person p { font-size: 11.5px; color: var(--text-2); margin-top: 9px; line-height: 1.55 }
+
+/* ---------- 체크 리스트 ---------- */
+.ticks { list-style: none; padding: 0; margin: 0; display: grid; gap: 11px }
+.ticks li { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; color: var(--text-2); line-height: 1.6 }
+.ticks li::before {
+  content: "✓"; flex: 0 0 auto; width: 21px; height: 21px; border-radius: 50%; margin-top: 2px;
+  display: grid; place-items: center; font-size: 11px; font-weight: 900;
+  background: color-mix(in srgb, var(--ibk-cyan) 20%, transparent); color: var(--ibk-cyan);
+}
+.ticks li b { color: var(--text-1) }
+
+/* ---------- 커버 ---------- */
+.cover-title { font-size: clamp(44px, 6.4vw, 104px); font-weight: 900; letter-spacing: -.055em; line-height: .98 }
+.cover-rule { width: 88px; height: 4px; border-radius: 4px; background: linear-gradient(90deg, var(--ibk-cyan), var(--ibk-rose)); animation: ruleGrow 1.1s var(--ease) both .3s }
+@keyframes ruleGrow { from { width: 0; opacity: 0 } to { width: 88px; opacity: 1 } }
+
+.brandbar { position: absolute; top: 44px; left: 84px; z-index: 3; display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 700; letter-spacing: .04em }
+.brand-dot { width: 11px; height: 11px; border-radius: 50%; background: linear-gradient(135deg, var(--ibk-cyan), var(--ibk-blue)); box-shadow: 0 0 0 5px color-mix(in srgb, var(--ibk-cyan) 18%, transparent); animation: dotPulse 2.4s ease-in-out infinite }
+@keyframes dotPulse { 50% { box-shadow: 0 0 0 11px color-mix(in srgb, var(--ibk-cyan) 0%, transparent) } }
+
+/* ---------- 섹션 디바이더 ---------- */
+.divider-slide { align-items: flex-start; justify-content: center }
+.div-num {
+  font-size: clamp(90px, 13vw, 190px); font-weight: 900; line-height: .85; letter-spacing: -.06em;
+  background: linear-gradient(120deg, var(--ibk-cyan), var(--ibk-blue) 60%, transparent);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* ---------- 로고 스트립 ---------- */
+.strip { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent) }
+.strip-in { display: flex; gap: 44px; width: max-content; animation: stripMove 26s linear infinite }
+.strip span { font-size: 20px; font-weight: 800; color: var(--text-3); letter-spacing: -.02em; white-space: nowrap; opacity: .7 }
+@keyframes stripMove { to { transform: translateX(-50%) } }
+
+/* ---------- 이미지 타일 ---------- */
+.tiles { display: grid; gap: 12px }
+.tile { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 4/3; border: 1px solid var(--border) }
+.tile img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease) }
+.tile:hover img { transform: scale(1.1) }
+.tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,.78)) }
+.tile b { position: absolute; left: 15px; right: 15px; bottom: 13px; z-index: 2; color: #fff; font-size: 14.5px; font-weight: 750; letter-spacing: -.02em }
+.tile small { position: absolute; left: 15px; bottom: 34px; z-index: 2; color: rgba(255,255,255,.75); font-size: 11px; letter-spacing: .1em; text-transform: uppercase }
+.tile.wide { aspect-ratio: 16/9 }
+
+/* ---------- 푸터 ---------- */
+.tpl-ibk .deck-footer {
+  position: absolute; left: 84px; right: 84px; bottom: 26px; z-index: 5;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 11.5px; color: var(--text-3); letter-spacing: .06em;
+}
+.tpl-ibk .slide-number { font-family: var(--font-mono) }
+
+/* ---------- 반응형 ---------- */
+@media (max-width: 1200px) {
+  .tpl-ibk .slide { padding: 44px 48px }
+  .brandbar { left: 48px; top: 30px }
+  .tpl-ibk .deck-footer { left: 48px; right: 48px }
+  .days { grid-template-columns: repeat(3, 1fr) }
+  .g4, .g5, .g6 { grid-template-columns: repeat(2, 1fr) }
+}
+@media (max-width: 780px) {
+  .tpl-ibk .slide { padding: 34px 26px }
+  .brandbar { left: 26px }
+  .tpl-ibk .deck-footer { left: 26px; right: 26px }
+  .g2, .g3, .g4, .g5, .g6, .days { grid-template-columns: 1fr }
+  .vs { grid-template-columns: 1fr } .vs-mid { flex-direction: row; min-width: 0; padding: 12px 0; overflow-x: auto }
+}

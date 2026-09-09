@@ -1,0 +1,51 @@
+[
+  {
+    "slug": "hero",
+    "file": "File:Bora Bora (16542797633).jpg",
+    "license": "CC BY 2.0",
+    "author": "The TerraMar Project",
+    "source": "https://commons.wikimedia.org/wiki/File:Bora_Bora_(16542797633).jpg"
+  },
+  {
+    "slug": "danang",
+    "file": "File:Han River, Da Nang, Vietnam.jpg",
+    "license": "CC0",
+    "author": "Gary Todd",
+    "source": "https://commons.wikimedia.org/wiki/File:Han_River,_Da_Nang,_Vietnam.jpg"
+  },
+  {
+    "slug": "nhatrang",
+    "file": "File:Nha Trang from under canopy.jpg",
+    "license": "CC BY 2.0",
+    "author": "Kevin King",
+    "source": "https://commons.wikimedia.org/wiki/File:Nha_Trang_from_under_canopy.jpg"
+  },
+  {
+    "slug": "kyoto",
+    "file": "File:20181110 Fushimi Inari Torii 12.jpg",
+    "license": "CC0",
+    "author": "Balon Greyjoy",
+    "source": "https://commons.wikimedia.org/wiki/File:20181110_Fushimi_Inari_Torii_12.jpg"
+  },
+  {
+    "slug": "singapore",
+    "file": "File:Dragonfly Lake - panoramio.jpg",
+    "license": "CC BY-SA 3.0",
+    "author": "Shuicai",
+    "source": "https://commons.wikimedia.org/wiki/File:Dragonfly_Lake_-_panoramio.jpg"
+  },
+  {
+    "slug": "swiss",
+    "file": "File:CH.VS.Zermatt Sunnegga Grindjisee Matterhorn 9034 16x9-R 16K.jpg",
+    "license": "CC BY-SA 4.0",
+    "author": "NOTE: This image is a panorama  consisting of multiple frames that were merged or stitched in software. As a result, this image necessarily underwent some form of digital manipulation. These manipulations may include blending, blurring, cloning, and color and perspective adjustments. As a result of these adjustments, the image content may be slightly different from reality at the points where multiple images were combined. This manipulation is often required due to lens, perspective, and parallax distortions.",
+    "source": "https://commons.wikimedia.org/wiki/File:CH.VS.Zermatt_Sunnegga_Grindjisee_Matterhorn_9034_16x9-R_16K.jpg"
+  },
+  {
+    "slug": "amalfi",
+    "file": "File:Positano (Italy) 03.jpg",
+    "license": "CC BY 4.0",
+    "author": "Bernard Gagnon",
+    "source": "https://commons.wikimedia.org/wiki/File:Positano_(Italy)_03.jpg"
+  }
+]
