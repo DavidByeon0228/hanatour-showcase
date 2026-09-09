@@ -205,6 +205,9 @@
   .tpl-ibk .thank-you .lede { max-width: 34ch; }
   .tpl-ibk .thank-you .h3 { font-size: clamp(18px, 5.2vw, 25px); line-height: 1.45; }
   .tpl-ibk .thank-you .chips { width: 100%; justify-content: center; }
+  .tpl-ibk .slide > p + p { margin-top: 20px; }
+  .tpl-ibk .thank-you .lede { margin-bottom: 12px; }
+  .tpl-ibk .thank-you .thank-you-quote { margin-top: 48px; }
   .tbl tbody td { grid-template-columns: minmax(64px, 30%) 1fr; gap: 8px; }
   .tbl tbody td > * { min-width: 0; }
 }
@@ -233,9 +236,6 @@
   background: rgba(3, 14, 36, .46);
   text-shadow: 0 0 22px rgba(141,234,255,.42), 0 3px 18px rgba(0,0,0,.7);
   letter-spacing: .08em;
-  color: #ffffff;
-  -webkit-text-fill-color: #ffffff;
-  background-image: none;
 }
 .heritage-tea .ibk-bg::after {
   content: "";
