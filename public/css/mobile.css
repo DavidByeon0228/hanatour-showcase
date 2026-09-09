@@ -52,6 +52,34 @@ body { padding-bottom: env(safe-area-inset-bottom); }
   .tsw-panel { bottom: calc(76px + env(safe-area-inset-bottom)); max-height: 70svh; }
   .toast-host { left: 12px; right: 12px; top: auto; bottom: calc(84px + env(safe-area-inset-bottom)); }
   .toast { max-width: none; }
+
+  /* Booking and credits tables become readable cards instead of clipped grids. */
+  .card-flush:has(> .dtable) { overflow: visible; }
+  .dtable, .dtable thead, .dtable tbody, .dtable tr, .dtable th, .dtable td {
+    display: block; width: 100%;
+  }
+  .dtable thead { display: none; }
+  .dtable tbody tr {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .dtable tbody tr:last-child { border-bottom: 0; }
+  .dtable tbody td {
+    display: grid;
+    grid-template-columns: minmax(92px, 30%) 1fr;
+    gap: 12px;
+    align-items: start;
+    padding: 6px 0;
+    border: 0;
+    overflow-wrap: anywhere;
+  }
+  .dtable tbody td::before {
+    content: attr(data-label);
+    color: var(--fg-3);
+    font-size: var(--fs-12);
+    font-weight: 700;
+  }
+  .dtable tbody td:last-child { padding-top: 10px; }
 }
 
 @media (max-width: 560px) {

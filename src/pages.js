@@ -491,13 +491,13 @@ ${pageHero('My Bookings', '예약조회', '신청하신 내역을 확인하고 �
       <thead><tr><th>예약번호</th><th>여행 상품</th><th>출발</th><th>인원</th><th>사용 업적</th><th>상태</th><th></th></tr></thead>
       <tbody>
       ${list.map(b => `<tr>
-        <td class="mono" style="font-size:var(--fs-12)">${esc(b.no)}</td>
-        <td><b>${esc(b.productName)}</b><br><span class="dim" style="font-size:var(--fs-12)">신청 ${fmtDate(b.createdAt, true)}</span></td>
-        <td>${esc(b.roundRange || '-')}</td>
-        <td class="num">${b.pax}명</td>
-        <td class="num">${won(b.usedPoint)}</td>
-        <td><span class="badge ${b.status === 'CONFIRMED' ? 'badge-ok' : 'badge-muted'}">${b.status === 'CONFIRMED' ? '신청완료' : '취소'}</span></td>
-        <td class="text-center"><a class="btn btn-sm btn-ghost" href="/bookings/${esc(b.no)}">상세</a></td>
+        <td data-label="예약번호" class="mono" style="font-size:var(--fs-12)">${esc(b.no)}</td>
+        <td data-label="여행 상품"><b>${esc(b.productName)}</b><br><span class="dim" style="font-size:var(--fs-12)">신청 ${fmtDate(b.createdAt, true)}</span></td>
+        <td data-label="출발">${esc(b.roundRange || '-')}</td>
+        <td data-label="인원" class="num">${b.pax}명</td>
+        <td data-label="사용 업적" class="num">${won(b.usedPoint)}</td>
+        <td data-label="상태"><span class="badge ${b.status === 'CONFIRMED' ? 'badge-ok' : 'badge-muted'}">${b.status === 'CONFIRMED' ? '신청완료' : '취소'}</span></td>
+        <td data-label="" class="text-center"><a class="btn btn-sm btn-ghost" href="/bookings/${esc(b.no)}">상세</a></td>
       </tr>`).join('')}
       </tbody>
     </table>
@@ -699,10 +699,10 @@ ${pageHero('Credits', '이미지 출처',
     <table class="dtable">
       <thead><tr><th>구분</th><th>파일</th><th>저작자</th><th>라이선스</th></tr></thead>
       <tbody>${list.map(c => `<tr>
-        <td class="mono">${esc(c.slug)}</td>
-        <td><a href="${esc(c.source)}" target="_blank" rel="noopener">${esc(String(c.file).replace(/^File:/, ''))}</a></td>
-        <td>${esc(String(c.author || '').slice(0, 60))}</td>
-        <td><span class="badge badge-muted">${esc(c.license)}</span></td>
+        <td data-label="구분" class="mono">${esc(c.slug)}</td>
+        <td data-label="파일"><a href="${esc(c.source)}" target="_blank" rel="noopener">${esc(String(c.file).replace(/^File:/, ''))}</a></td>
+        <td data-label="저작자">${esc(String(c.author || '').slice(0, 60))}</td>
+        <td data-label="라이선스"><span class="badge badge-muted">${esc(c.license)}</span></td>
       </tr>`).join('')}</tbody>
     </table>
   </div>

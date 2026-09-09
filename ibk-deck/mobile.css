@@ -125,6 +125,38 @@
   /* 표는 가로 스크롤 */
   .tpl-ibk .card:has(> .tbl), .tpl-ibk .card > .tbl { overflow-x: auto; }
   .tpl-ibk .card > .tbl { display: block; min-width: 0; }
+  .tbl, .tbl thead, .tbl tbody, .tbl tr, .tbl th, .tbl td { display: block; width: 100%; }
+  .tbl thead { display: none; }
+  .tbl tbody tr {
+    margin: 0 0 12px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: color-mix(in srgb, var(--surface) 70%, transparent);
+  }
+  .tbl tbody tr:last-child { margin-bottom: 0; }
+  .tbl tbody td {
+    display: grid;
+    grid-template-columns: minmax(70px, 27%) 1fr;
+    gap: 10px;
+    padding: 7px 0;
+    border: 0;
+    overflow-wrap: anywhere;
+    word-break: keep-all;
+  }
+  .tbl tbody td:first-child {
+    grid-template-columns: 1fr;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .tbl tbody td:not(:first-child)::before {
+    content: "내용";
+    color: var(--text-3);
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .tbl tbody td[colspan] { display: block; }
+  .tbl tbody td[colspan]::before { content: none; }
   .vs { grid-template-columns: 1fr; gap: 12px; }
   .vs-mid { flex-direction: row; flex-wrap: wrap; justify-content: center; padding: 4px 0; min-width: 0; }
   .vs-key { padding: 5px 12px; font-size: 11px; }
@@ -141,6 +173,10 @@
   .div-num { font-size: clamp(64px, 22vw, 110px); }
   .metric .n { font-size: clamp(28px, 9vw, 40px); }
   .tile { aspect-ratio: 16/10; }
+  .tpl-ibk .slide { font-size: 15px; line-height: 1.6; }
+  .tpl-ibk .lede { font-size: 15px; line-height: 1.65; }
+  .tpl-ibk .card p, .tpl-ibk .sm { font-size: 13px; }
+  .tbl tbody td { grid-template-columns: minmax(64px, 30%) 1fr; gap: 8px; }
 }
 
 /* 터치 기기: hover 리프트 제거 */
