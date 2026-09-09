@@ -43,9 +43,6 @@
       '<path d="M4 5h16M4 10h16M4 15h10"/></svg><span>노트</span></button>' +
     '<button type="button" data-act="full" aria-label="전체화면"><svg viewBox="0 0 24 24">' +
       '<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><span>전체</span></button>' +
-    '<button type="button" data-act="present" aria-label="발표자 모드"><svg viewBox="0 0 24 24">' +
-      '<rect x="2.5" y="4" width="19" height="12.5" rx="2"/><path d="M9 20.5h6M12 16.5v4"/></svg>' +
-      '<span>발표</span></button>' +
     '<button type="button" data-act="next" aria-label="다음 슬라이드">' +
       '<svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>';
   document.body.appendChild(bar);
@@ -89,7 +86,6 @@
       case 'theme': key('t'); flashTheme(); break;
       case 'notes': key('n'); break;
       case 'full': fullscreen(); break;
-      case 'present': key('s'); break;
       case 'page': openSheet(!sheet.classList.contains('open')); break;
     }
     poke();

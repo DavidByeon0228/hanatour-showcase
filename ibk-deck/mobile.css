@@ -129,6 +129,7 @@
     overscroll-behavior-y: contain;
     scrollbar-width: thin;
   }
+  .tpl-ibk .slide > * { flex-shrink: 0; }
   .tpl-ibk .deck-footer { position: static; margin-top: 22px; padding-bottom: 8px; }
   .brandbar { position: static; margin-bottom: 14px; }
   .section-num { font-size: 120px; right: 16px; bottom: 76px; opacity: .04; }
@@ -137,7 +138,8 @@
   .tbl { font-size: 12px; }
   .tbl th, .tbl td { padding: 8px 9px; }
   /* 표는 가로 스크롤 */
-  .tpl-ibk .card:has(> .tbl), .tpl-ibk .card > .tbl { overflow-x: auto; }
+  .tpl-ibk .card:has(> .tbl) { overflow: visible; }
+  .tpl-ibk .card > .tbl { overflow: visible; }
   .tpl-ibk .card > .tbl { display: block; min-width: 0; }
   .tbl, .tbl thead, .tbl tbody, .tbl tr, .tbl th, .tbl td { display: block; width: 100%; }
   .tbl thead { display: none; }
@@ -193,8 +195,48 @@
   .tpl-ibk .slide { font-size: 15px; line-height: 1.6; }
   .tpl-ibk .lede { font-size: 15px; line-height: 1.65; }
   .tpl-ibk .card p, .tpl-ibk .sm { font-size: 13px; }
+  .tpl-ibk h1, .tpl-ibk h2, .tpl-ibk h3, .tpl-ibk h4,
+  .tpl-ibk p, .tpl-ibk li, .tpl-ibk .card-n, .tpl-ibk .chip {
+    overflow-wrap: anywhere;
+    word-break: keep-all;
+  }
+  .tpl-ibk .h2 { line-height: 1.22; }
+  .tpl-ibk .thank-you { text-align: center; }
+  .tpl-ibk .thank-you .lede { max-width: 34ch; }
+  .tpl-ibk .thank-you .h3 { font-size: clamp(18px, 5.2vw, 25px); line-height: 1.45; }
+  .tpl-ibk .thank-you .chips { width: 100%; justify-content: center; }
   .tbl tbody td { grid-template-columns: minmax(64px, 30%) 1fr; gap: 8px; }
   .tbl tbody td > * { min-width: 0; }
+}
+
+.thank-you .photo-bg::after {
+  background:
+    radial-gradient(ellipse at center, rgba(5, 15, 38, .38), rgba(5, 10, 28, .82) 78%),
+    linear-gradient(180deg, rgba(5, 12, 30, .52), rgba(5, 10, 24, .78));
+}
+.thank-you > *:not(.ibk-bg):not(.ibk-fx) { position: relative; text-shadow: 0 2px 18px rgba(0,0,0,.55); }
+.thank-you .thank-you-kicker {
+  color: #8deaff;
+  font-size: clamp(11px, 1.1vw, 15px);
+  font-weight: 800;
+  letter-spacing: .22em;
+  animation: thankYouPulse 3s ease-in-out infinite;
+}
+.thank-you .thank-you-quote span { color: #fff; }
+.thank-you .chip { border-color: rgba(141,234,255,.45); color: #fff; background: rgba(5,20,48,.62); }
+.heritage-tea .card { background: color-mix(in srgb, var(--surface) 94%, #06152d); }
+.security-amp { color: var(--text-1); }
+.li-detail { display: inline; }
+@keyframes thankYouPulse {
+  0%, 100% { opacity: .72; letter-spacing: .18em; }
+  50% { opacity: 1; letter-spacing: .25em; }
+}
+@media (max-width: 560px) {
+  .heritage-tea .card { border-color: color-mix(in srgb, var(--text-1) 28%, transparent); }
+  .security-amp { display: inline-block; margin: 0 .12em; }
+  .tpl-ibk .slide .ticks li { line-height: 1.55; }
+  .tpl-ibk .slide .ticks li b { display: inline-block; margin-right: .28em; }
+  .tpl-ibk .slide .li-detail { display: block; margin-top: 2px; }
 }
 
 /* 터치 기기: hover 리프트 제거 */
