@@ -226,7 +226,7 @@
 }
 .cover-slide .brandbar {
   position: absolute;
-  top: 44px;
+  top: 0;
   left: 84px;
 }
 .cover-slide .deck-footer {
