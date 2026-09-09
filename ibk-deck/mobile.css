@@ -181,7 +181,7 @@
   .tpl-ibk .slide {
     padding: max(24px, env(safe-area-inset-top)) 20px calc(112px + env(safe-area-inset-bottom));
   }
-  .tiles.g4, .grid.g2, .grid.g3, .grid.g4, .grid.g5, .grid.g6 { grid-template-columns: 1fr; }
+  .tiles.g4, .grid.g2, .grid.g3, .grid.g4, .grid.g5, .grid.g6 { grid-template-columns: 1fr !important; }
   .days { grid-template-columns: 1fr; }
   .people { grid-template-columns: 1fr; }
   .tpl-ibk .h1 { font-size: clamp(30px, 9vw, 44px); }
