@@ -29,7 +29,7 @@ function setUser(code) {
 function path() {
   var h = location.hash.replace(/^#/, '');
   if (!h || h === '/') return '/';
-  return h.replace(/\/+$/, '') || '/';
+  return (h.split('#')[0].replace(/\/+$/, '') || '/');
 }
 function go(to, replace) {
   var target = '#' + (to.charAt(0) === '/' ? to : '/' + to);
@@ -42,10 +42,14 @@ function go(to, replace) {
    정적 배포에서는 해시 경로와 상대 이미지 경로로 바꿔 줍니다. */
 function rewrite(htmlText) {
   return htmlText
-    .replace(/(src|href)="\/img\//g, '$1="img/')
-    .replace(/href="\/#about"/g, 'href="#/"')
-    .replace(/href="\/"/g, 'href="#/"')
-    .replace(/href="\/([a-zA-Z0-9][^"#]*)"/g, 'href="#/$1"')
+    .replace(/(src|href)="\/([^"]*)"/g, function (_, attr, value) {
+      if (attr === 'src') return 'src="' + (value.indexOf('img/') === 0 ? value : value) + '"';
+      var match = value.match(/^([^?#]*)(\?[^#]*)?(#.*)?$/);
+      var route = match && match[1] ? match[1] : '/';
+      var query = match && match[2] ? match[2] : '';
+      var anchor = match && match[3] ? match[3] : '';
+      return 'href="#' + (route === '/' ? '/' : '/' + route.replace(/^\/+/, '')) + query + anchor + '"';
+    })
     .replace(/action="\/([^"]*)"/g, 'data-action="/$1" action="javascript:void 0"');
 }
 
@@ -66,6 +70,13 @@ function paint(fullDoc) {
   app.innerHTML = parts.join('\n');
   document.title = doc.title;
   window.scrollTo(0, 0);
+  var hash = location.hash.replace(/^#/, '').split('#')[1];
+  if (hash) {
+    setTimeout(function () {
+      var target = document.getElementById(hash);
+      if (target) target.scrollIntoView({ block: 'start' });
+    }, 0);
+  }
   if (window.initApp) window.initApp();
   bindForms();
 }

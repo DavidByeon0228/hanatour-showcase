@@ -7,10 +7,19 @@
   /* ---------- 모바일 네비게이션 ---------- */
   var burger = document.querySelector('.burger');
   var nav = document.querySelector('.nav');
-  if (burger && nav) {
+  if (burger && nav && !burger.hasAttribute('data-bound')) {
+    burger.setAttribute('data-bound', 'true');
     burger.addEventListener('click', function () {
       var open = nav.classList.toggle('open');
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      burger.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
+    });
+    nav.addEventListener('click', function (e) {
+      if (e.target.closest('a')) {
+        nav.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        burger.setAttribute('aria-label', '메뉴 열기');
+      }
     });
   }
 
